@@ -3,9 +3,9 @@ import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
 import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/api/user")
@@ -18,14 +18,24 @@ public class UsersControllers {
     }
 
     @PostMapping()
-    public ResponseEntity<Users> insert(@RequestBody UsersDTO usersDTO){
-        Users newUser = this.service.CreateUser(usersDTO);
-        return  ResponseEntity.ok().body(newUser);
+    public ResponseEntity<Users> createUser(@RequestBody UsersDTO usersDTO){
+        try {
+            Users newUser = this.service.CreateUser(usersDTO);
+            return  ResponseEntity.ok().body(newUser);
+        }catch (Error e){
+            return  ResponseEntity.notFound().build();
+        }
+
     }
 
     @GetMapping("/{id}")
-    public Users findById(@PathVariable String id){
-        Users users = this.service.getUser(id);
-        return  users;
+    public ResponseEntity<Users> findById(@PathVariable String id) throws EmptyResultDataAccessException{
+        try {
+            Users users = this.service.getUser(id);
+            return  ResponseEntity.ok().body(users);
+        }catch (EmptyResultDataAccessException e){
+            return  ResponseEntity.notFound().build();
+        }
+
     }
 }
