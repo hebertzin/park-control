@@ -1,11 +1,24 @@
 package com.parking.controllers.spaces;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.parking.domain.spaces.Spaces;
+import com.parking.domain.spaces.SpacesDTO;
+import com.parking.services.spaces.SpaceService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/spaces")
 public class SpacesController {
-    @GetMapping("/spaces")
-    public  String  getAllSpaces(){
-        return "get all spaces";
+    private SpaceService service;
+
+    @GetMapping("/{id}")
+    public Spaces getAllSpaces(@PathVariable String id){
+        Spaces space = this.service.getSpace(id);
+        return space;
+    }
+
+    @PostMapping
+    public ResponseEntity<Spaces> create(@RequestBody SpacesDTO spacesDTO){
+        Spaces space = this.service.Create(spacesDTO);
+        return  ResponseEntity.ok().body(space);
     }
 }
