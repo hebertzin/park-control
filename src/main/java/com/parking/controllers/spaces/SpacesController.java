@@ -4,6 +4,7 @@ import com.parking.domain.spaces.SpacesDTO;
 import com.parking.services.spaces.SpaceService;
 import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,19 +19,34 @@ public class SpacesController {
     }
 
     @GetMapping("/{id}")
-    public Spaces getSpaceByIdController(@PathVariable String id){
-        Spaces space = this.service.getSpace(id);
-        return space;
+    public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id){
+        try {
+            Spaces space = this.service.getSpace(id);
+            return ResponseEntity.ok().body(space);
+        }catch (EmptyResultDataAccessException e){
+            return  ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
     public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spacesDTO){
-        Spaces space = this.service.Create(spacesDTO);
-        return  ResponseEntity.ok().body(space);
+        try {
+            Spaces space = this.service.Create(spacesDTO);
+            return  ResponseEntity.ok().body(space);
+        }catch (EmptyResultDataAccessException e){
+            return  ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSpaceController(@PathVariable String id){
-        this.service.deleteSpace(id);
+    public ResponseEntity deleteSpaceController(@PathVariable String id) throws  EmptyResultDataAccessException{
+        try {
+            this.service.deleteSpace(id);
+            return ResponseEntity.ok().body("space was deleted successfully");
+        }catch (EmptyResultDataAccessException e){
+            return  ResponseEntity.notFound().build();
+        }
+
     }
 }
