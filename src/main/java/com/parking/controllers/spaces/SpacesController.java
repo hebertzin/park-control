@@ -19,7 +19,7 @@ public class SpacesController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id){
+    public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id) throws EmptyResultDataAccessException{
         try {
             Spaces space = this.service.getSpace(id);
             return ResponseEntity.ok().body(space);
@@ -29,7 +29,7 @@ public class SpacesController {
     }
 
     @PostMapping
-    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spacesDTO){
+    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spacesDTO) throws  EmptyResultDataAccessException{
         try {
             Spaces space = this.service.Create(spacesDTO);
             return  ResponseEntity.ok().body(space);
