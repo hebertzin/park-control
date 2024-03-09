@@ -13,7 +13,7 @@ public class UsersControllers {
     private UsersService service;
 
     @Autowired
-    public void UsersController(UsersService service){
+    public void UsersControllers(UsersService service){
         this.service = service;
     }
 

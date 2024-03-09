@@ -28,4 +28,9 @@ public class SpaceService {
         Optional<Spaces> optionalSpace = this.repository.findById(id);
         return optionalSpace.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
+
+    public void deleteSpace(String id) throws  EmptyResultDataAccessException {
+        getSpace(id);
+        this.repository.deleteById(id);
+    }
 }

@@ -28,4 +28,9 @@ public class SpacesController {
         Spaces space = this.service.Create(spacesDTO);
         return  ResponseEntity.ok().body(space);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteSpaceController(@PathVariable String id){
+        this.service.deleteSpace(id);
+    }
 }
