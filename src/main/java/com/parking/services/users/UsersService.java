@@ -2,6 +2,7 @@ package com.parking.services.users;
 import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
 import com.parking.repository.users.UsersRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -21,6 +22,6 @@ public class UsersService {
 
   public Users list(String id){
       Optional<Users> optionalUsers = this.repository.findById(id);
-      return  optionalUsers.orElse(null);
+      return  optionalUsers.orElseThrow(() -> new EmptyResultDataAccessException(1));
   }
 }

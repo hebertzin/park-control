@@ -11,13 +11,13 @@ public class SpacesController {
     private SpaceService service;
 
     @GetMapping("/{id}")
-    public Spaces getAllSpaces(@PathVariable String id){
+    public Spaces getSpaceByIdController(@PathVariable String id){
         Spaces space = this.service.getSpace(id);
         return space;
     }
 
     @PostMapping
-    public ResponseEntity<Spaces> create(@RequestBody SpacesDTO spacesDTO){
+    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spacesDTO){
         Spaces space = this.service.Create(spacesDTO);
         return  ResponseEntity.ok().body(space);
     }

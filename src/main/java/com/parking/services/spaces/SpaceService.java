@@ -2,6 +2,7 @@ package com.parking.services.spaces;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
 import com.parking.repository.spaces.SpacesRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,11 +14,12 @@ public class SpaceService {
 
     public Spaces Create(SpacesDTO space){
         Spaces newSpace = new Spaces();
+        getSpace(space.userId());
         return  this.repository.save(newSpace);
     }
 
-    public Spaces getSpace(String id){
+    public Spaces getSpace(String id) throws EmptyResultDataAccessException {
         Optional<Spaces> optionalSpace = this.repository.findById(id);
-        return  optionalSpace.orElse(null);
+        return optionalSpace.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 }
