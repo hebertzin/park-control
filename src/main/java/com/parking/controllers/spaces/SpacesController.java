@@ -47,6 +47,5 @@ public class SpacesController {
         }catch (EmptyResultDataAccessException e){
             return  ResponseEntity.notFound().build();
         }
-
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MongoConfig {
     @Bean
   public MongoDatabaseFactory configDatabase(){
-   return  new SimpleMongoClientDatabaseFactory("mongodb+srv://hebertsantos0704:EDuHbC1Rfi6z1CSS@parking-cluster.t5nuxkd.mongodb.net/Parking-database?retryWrites=true&w=majority&appName=parking-cluster");
+   return new SimpleMongoClientDatabaseFactory("mongodb+srv://hebertsantos0704:EDuHbC1Rfi6z1CSS@parking-cluster.t5nuxkd.mongodb.net/Parking-database?retryWrites=true&w=majority&appName=parking-cluster");
   };
   @Bean
     public MongoTemplate mongoTemplate(){

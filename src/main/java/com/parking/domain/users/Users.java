@@ -1,10 +1,15 @@
 package com.parking.domain.users;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.parking.domain.spaces.Spaces;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Document(collection = "users")
 @Getter
@@ -17,6 +22,9 @@ public class Users {
     private String email;
     private String password;
 
+    @JsonProperty("spaces")
+    @DBRef
+    private List<Spaces> spaces;
     public Users(UsersDTO user){
         this.name = user.name();
         this.email = user.email();
