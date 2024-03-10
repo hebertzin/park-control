@@ -4,9 +4,11 @@ import com.parking.domain.vehicle.Vehicle;
 import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.repository.vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VehicleService {
@@ -25,5 +27,9 @@ public class VehicleService {
     public List<Vehicle> findAllVehicles(String userId){
         List<Vehicle> vehicle = this.repository.findAllByUserId(userId);
         return vehicle;
+    }
+    public Vehicle listVehicleById(String id) throws EmptyResultDataAccessException{
+        Optional<Vehicle> optionalVehicle = this.repository.findById(id);
+        return optionalVehicle.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 }
