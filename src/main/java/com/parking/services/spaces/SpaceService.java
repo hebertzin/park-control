@@ -19,9 +19,8 @@ public class SpaceService {
     }
 
     public Spaces Create(SpacesDTO space) throws EmptyResultDataAccessException{
-        Spaces newSpace = new Spaces();
-        getSpace(space.userId());
-        return  this.repository.save(newSpace);
+        Spaces newSpace = new Spaces(space);
+        return this.repository.save(newSpace);
     }
 
     public Spaces getSpace(String id) throws EmptyResultDataAccessException {

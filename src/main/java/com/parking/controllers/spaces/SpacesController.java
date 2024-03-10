@@ -2,14 +2,15 @@ package com.parking.controllers.spaces;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
 import com.parking.services.spaces.SpaceService;
-import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/spaces")
+
 public class SpacesController {
     private SpaceService service;
 
@@ -28,10 +29,10 @@ public class SpacesController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spacesDTO) throws  EmptyResultDataAccessException{
+    @PostMapping()
+    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spaceDTO) throws  EmptyResultDataAccessException{
         try {
-            Spaces space = this.service.Create(spacesDTO);
+            Spaces space = this.service.Create(spaceDTO);
             return  ResponseEntity.ok().body(space);
         }catch (EmptyResultDataAccessException e){
             return  ResponseEntity.notFound().build();

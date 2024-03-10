@@ -1,4 +1,5 @@
 package com.parking.domain.spaces;
 
-public record SpacesDTO(String title, String description, String userId) {
-}
+import com.parking.domain.users.Users;
+
+public record SpacesDTO(String title, String description, int price, String user) { }

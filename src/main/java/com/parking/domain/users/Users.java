@@ -2,6 +2,7 @@ package com.parking.domain.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.parking.domain.spaces.Spaces;
+import com.parking.domain.vehicle.Vehicle;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,11 @@ public class Users {
     @JsonProperty("spaces")
     @DBRef
     private List<Spaces> spaces;
+
+    @JsonProperty("vehicles")
+    @DBRef
+    private List<Vehicle> vehicles;
+
     public Users(UsersDTO user){
         this.name = user.name();
         this.email = user.email();
