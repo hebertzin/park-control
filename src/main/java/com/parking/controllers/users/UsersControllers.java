@@ -4,6 +4,7 @@ import com.parking.domain.users.UsersDTO;
 import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class UsersControllers {
     public ResponseEntity<Users> createUser(@RequestBody UsersDTO usersDTO){
         try {
             Users newUser = this.service.CreateUser(usersDTO);
-            return  ResponseEntity.ok().body(newUser);
+            return  ResponseEntity.status(HttpStatus.CREATED).body(newUser);
         }catch (Error e){
             return  ResponseEntity.notFound().build();
         }

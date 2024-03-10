@@ -6,6 +6,7 @@ import com.parking.services.spaces.exception.SpaceException;
 import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,23 +29,23 @@ public class SpacesController {
             Spaces space = this.service.getSpace(id);
             return ResponseEntity.ok().body(space);
         }catch (SpaceException e){
-            return  ResponseEntity.notFound().build();
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @PostMapping()
     public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spaceDTO){
             Spaces space = this.service.Create(spaceDTO);
-            return  ResponseEntity.ok().body(space);
+            return  ResponseEntity.status(HttpStatus.CREATED).body(space);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteSpaceController(@PathVariable String id) throws  EmptyResultDataAccessException{
         try {
             this.service.deleteSpace(id);
-            return ResponseEntity.ok().body("delete successfully");
+            return ResponseEntity.ok().build();
         }catch (EmptyResultDataAccessException e){
-            return  ResponseEntity.notFound().build();
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
@@ -52,9 +53,9 @@ public class SpacesController {
     public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) {
         try {
             List<Spaces> spaces = service.getAllSpaceByUser(id);
-            return ResponseEntity.ok().body(spaces);
+            return ResponseEntity.status(HttpStatus.CREATED).body(spaces);
         } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }

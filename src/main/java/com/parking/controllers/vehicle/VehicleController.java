@@ -4,6 +4,7 @@ import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.services.vehicle.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,9 @@ public class VehicleController {
     public ResponseEntity<Vehicle> addVehicle(@RequestBody VehicleDTO vehicleDTO) throws Error{
         try {
             Vehicle vehicle = this.service.Create(vehicleDTO);
-            return  ResponseEntity.ok().body(vehicle);
+            return  ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
         }catch (Error e){
-           return  ResponseEntity.badRequest().build();
+           return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -35,7 +36,7 @@ public class VehicleController {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
             return  ResponseEntity.ok().body(vehicles);
         }catch (Error e){
-            return  ResponseEntity.badRequest().build();
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -45,7 +46,7 @@ public class VehicleController {
             Vehicle vehicle = this.service.listVehicleById(id);
             return ResponseEntity.ok().body(vehicle);
         }catch (EmptyResultDataAccessException e){
-            return  ResponseEntity.notFound().build();
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }
