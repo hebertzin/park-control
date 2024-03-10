@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class VehicleService {
     private VehicleRepository repository;
@@ -19,5 +20,10 @@ public class VehicleService {
     public Vehicle Create(VehicleDTO vehicleDTO){
         Vehicle vehicle = new Vehicle(vehicleDTO);
         return this.repository.save(vehicle);
+    }
+
+    public List<Vehicle> findAllVehicles(String userId){
+        List<Vehicle> vehicle = this.repository.findAllByUserId(userId);
+        return vehicle;
     }
 }
