@@ -13,7 +13,7 @@ public class VehicleService {
         this.repository = repository;
     }
 
-    public  Vehicle Create(VehicleDTO vehicleDTO){
+    public Vehicle Create(VehicleDTO vehicleDTO){
         Vehicle vehicle = new Vehicle(vehicleDTO);
         return this.repository.save(vehicle);
     }
