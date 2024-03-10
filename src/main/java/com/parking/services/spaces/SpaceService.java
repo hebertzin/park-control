@@ -2,6 +2,7 @@ package com.parking.services.spaces;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
 import com.parking.repository.spaces.SpacesRepository;
+import com.parking.services.spaces.exception.SpaceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,14 @@ public class SpaceService {
         this.repository = repository;
     }
 
-    public Spaces Create(SpacesDTO space) throws EmptyResultDataAccessException{
+    public Spaces Create(SpacesDTO space){
         Spaces newSpace = new Spaces(space);
         return this.repository.save(newSpace);
     }
 
-    public Spaces getSpace(String id) throws EmptyResultDataAccessException {
+    public Spaces getSpace(String id) throws SpaceException {
         Optional<Spaces> optionalSpace = this.repository.findById(id);
-        return optionalSpace.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return optionalSpace.orElseThrow(() -> new SpaceException());
     }
 
     public List<Spaces> getAllSpaceByUser(String id) throws EmptyResultDataAccessException {
@@ -34,8 +35,8 @@ public class SpaceService {
         return listSapesByUser;
     }
 
-    public void deleteSpace(String id) throws  EmptyResultDataAccessException {
-        getSpace(id);
+    public void deleteSpace(String id) throws  SpaceException {
+        this.repository.findById(id).orElseThrow(() ->new SpaceException());
         this.repository.deleteById(id);
     }
 }
