@@ -17,6 +17,14 @@ public class Vehicle {
     @JsonProperty("vehicle_plate")
     private String plate;
 
-    @DBRef
-    private Users user;
+
+    @JsonProperty("user_id")
+    private String userId;
+
+    public Vehicle(VehicleDTO vehicleDTO){
+        this.brand = vehicleDTO.brand();
+        this.model = vehicleDTO.model();
+        this.plate = vehicleDTO.plate();
+        this.userId = vehicleDTO.userId();
+    }
 }
