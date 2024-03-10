@@ -4,7 +4,10 @@ import com.parking.domain.vehicle.Vehicle;
 import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.repository.vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
 public class VehicleService {
     private VehicleRepository repository;
 

@@ -2,15 +2,17 @@ package com.parking.controllers.spaces;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
 import com.parking.services.spaces.SpaceService;
+import com.parking.services.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/spaces")
-
 public class SpacesController {
     private SpaceService service;
 
@@ -47,6 +49,16 @@ public class SpacesController {
             return ResponseEntity.ok().body("space was deleted successfully");
         }catch (EmptyResultDataAccessException e){
             return  ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/all/{id}")
+    public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) {
+        try {
+            List<Spaces> spaces = service.getAllSpaceByUser(id);
+            return ResponseEntity.ok().body(spaces);
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }
