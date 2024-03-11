@@ -2,7 +2,7 @@ package com.parking.controllers.users.impl;
 import com.parking.controllers.users.IUserController;
 import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
-import com.parking.services.users.UsersService;
+import com.parking.services.users.impl.UsersServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UsersControllers implements IUserController {
-    private UsersService service;
+public class UsersControllersImpl implements IUserController {
+    private UsersServiceImpl service;
 
     @Autowired
-    public void UsersControllers(UsersService service){
+    public void UsersControllers(UsersServiceImpl service){
         this.service = service;
     }
 

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ISpaceController {
+
     ResponseEntity<Spaces> createSpaceController(SpacesDTO space) throws Exception;
 
     ResponseEntity<Spaces> updateSpace(String id, SpacesDTO spaceDTO);

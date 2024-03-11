@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 
 public interface IUserController {
+
     ResponseEntity<Users> createUser(UsersDTO user) throws Exception;
 
     ResponseEntity<Users> findById(String id) throws EmptyResultDataAccessException;

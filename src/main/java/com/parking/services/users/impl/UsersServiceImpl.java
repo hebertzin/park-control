@@ -1,15 +1,15 @@
-package com.parking.services.users;
+package com.parking.services.users.impl;
 import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
 import com.parking.repository.users.UsersRepository;
-import org.apache.catalina.User;
+import com.parking.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UsersService {
+public class UsersServiceImpl implements IUserService {
   private UsersRepository repository;
 
   @Autowired

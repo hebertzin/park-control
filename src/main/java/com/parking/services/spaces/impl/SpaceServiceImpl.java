@@ -1,11 +1,10 @@
-package com.parking.services.spaces;
+package com.parking.services.spaces.impl;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
-import com.parking.domain.users.Users;
 import com.parking.repository.spaces.SpacesRepository;
 import com.parking.repository.users.UsersRepository;
+import com.parking.services.spaces.ISpaceService;
 import com.parking.services.spaces.exception.SpaceNotFoundException;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SpaceService {
+public class SpaceServiceImpl implements ISpaceService {
 
     private SpacesRepository repository;
     private UsersRepository usersRepository;

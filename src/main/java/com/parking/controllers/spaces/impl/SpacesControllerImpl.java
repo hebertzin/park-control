@@ -2,7 +2,7 @@ package com.parking.controllers.spaces.impl;
 import com.parking.controllers.spaces.ISpaceController;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
-import com.parking.services.spaces.SpaceService;
+import com.parking.services.spaces.impl.SpaceServiceImpl;
 import com.parking.services.spaces.exception.SpaceNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/ads/spaces")
-public class SpacesController implements ISpaceController {
-    private SpaceService service;
+public class SpacesControllerImpl implements ISpaceController {
+    private SpaceServiceImpl service;
 
     @Autowired
-    public void SpacesController(SpaceService service){
+    public void SpacesController(SpaceServiceImpl service){
         this.service = service;
     }
 

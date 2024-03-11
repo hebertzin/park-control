@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface IVehicleController {
+
    ResponseEntity<Vehicle> addVehicle(VehicleDTO vehicle) throws Exception;
 
    ResponseEntity<Vehicle> listVehicleById(String id) throws Exception;

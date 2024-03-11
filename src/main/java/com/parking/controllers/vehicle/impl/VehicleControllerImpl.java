@@ -2,7 +2,7 @@ package com.parking.controllers.vehicle.impl;
 import com.parking.controllers.vehicle.IVehicleController;
 import com.parking.domain.vehicle.Vehicle;
 import com.parking.domain.vehicle.VehicleDTO;
-import com.parking.services.vehicle.VehicleService;
+import com.parking.services.vehicle.impl.VehicleServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/vehicles")
-public class VehicleController implements IVehicleController {
-    private VehicleService service;
+public class VehicleControllerImpl implements IVehicleController {
+    private VehicleServiceImpl service;
 
     @Autowired
-    public void VehicleController(VehicleService service){
+    public void VehicleController(VehicleServiceImpl service){
         this.service = service;
     }
 
