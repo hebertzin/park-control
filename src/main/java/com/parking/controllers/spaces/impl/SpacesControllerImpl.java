@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin
@@ -24,7 +23,7 @@ public class SpacesControllerImpl implements ISpaceController {
         this.service = service;
     }
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> createSpaceController(@Valid @RequestBody SpacesDTO spaceDTO) throws Exception{
              Spaces space = this.service.Create(spaceDTO);
              return  ResponseEntity.status(HttpStatus.CREATED).body(space);

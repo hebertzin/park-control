@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/login")
 public class AuthenticationControllerImpl implements IAuthenticationController {
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void authenticate(@RequestBody LoginRequest login){
     }
 }

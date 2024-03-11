@@ -21,7 +21,7 @@ public class UsersControllersImpl implements IUserController {
         this.service = service;
     }
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> createUser(@Valid @RequestBody UsersDTO usersDTO) throws Exception{
         try {
             Users newUser = this.service.CreateUser(usersDTO);

@@ -22,7 +22,7 @@ public class VehicleControllerImpl implements IVehicleController {
         this.service = service;
     }
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vehicle> addVehicle(@Valid  @RequestBody VehicleDTO vehicleDTO) throws Exception{
         try {
             Vehicle vehicle = this.service.Create(vehicleDTO);
