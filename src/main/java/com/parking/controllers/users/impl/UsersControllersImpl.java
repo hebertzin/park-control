@@ -17,7 +17,7 @@ public class UsersControllersImpl implements IUserController {
     private UsersServiceImpl service;
 
     @Autowired
-    public void UsersControllers(UsersServiceImpl service){
+    public void UsersControllersImpl(UsersServiceImpl service){
         this.service = service;
     }
 
