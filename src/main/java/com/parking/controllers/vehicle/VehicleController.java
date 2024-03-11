@@ -2,6 +2,7 @@ package com.parking.controllers.vehicle;
 import com.parking.domain.vehicle.Vehicle;
 import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.services.vehicle.VehicleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class VehicleController {
     }
 
     @PostMapping()
-    public ResponseEntity<Vehicle> addVehicle(@RequestBody VehicleDTO vehicleDTO) throws Error{
+    public ResponseEntity<Vehicle> addVehicle(@Valid  @RequestBody VehicleDTO vehicleDTO) throws Error{
         try {
             Vehicle vehicle = this.service.Create(vehicleDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(vehicle);

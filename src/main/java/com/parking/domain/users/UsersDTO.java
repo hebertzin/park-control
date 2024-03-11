@@ -1,3 +1,14 @@
 package com.parking.domain.users;
 
-public record UsersDTO(String name, String email, String password) {}
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public record UsersDTO(
+        @NotBlank(message = "name can not be empty") String name,
+        @NotBlank(message = "name can not be empty")
+        @Email(message = "must be a valid email")
+        String email,
+        @Pattern(regexp = "^.{6,}$", message = "at least 6 characters")
+        String password)
+{}

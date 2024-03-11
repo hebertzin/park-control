@@ -2,6 +2,7 @@ package com.parking.controllers.users;
 import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
 import com.parking.services.users.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class UsersControllers {
     }
 
     @PostMapping()
-    public ResponseEntity<Users> createUser(@RequestBody UsersDTO usersDTO){
+    public ResponseEntity<Users> createUser(@Valid  @RequestBody UsersDTO usersDTO){
         try {
             Users newUser = this.service.CreateUser(usersDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(newUser);
