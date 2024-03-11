@@ -15,6 +15,7 @@ public class Spaces {
     private String id;
 
     private String title;
+
     private String description;
 
    @JsonProperty("parking_price")

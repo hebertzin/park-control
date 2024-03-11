@@ -4,15 +4,15 @@ import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.services.vehicle.VehicleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vehicles")
+@RequestMapping("/api/v1/vehicles")
 public class VehicleController {
     private VehicleService service;
 
@@ -21,8 +21,8 @@ public class VehicleController {
         this.service = service;
     }
 
-    @PostMapping()
-    public ResponseEntity<Vehicle> addVehicle(@Valid  @RequestBody VehicleDTO vehicleDTO) throws Error{
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Vehicle> addVehicle(@Valid  @RequestBody VehicleDTO vehicleDTO) throws Exception{
         try {
             Vehicle vehicle = this.service.Create(vehicleDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
@@ -32,7 +32,7 @@ public class VehicleController {
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<Vehicle>> addVehicle(@PathVariable String userId) throws Error{
+    public ResponseEntity<List<Vehicle>> addVehicle(@PathVariable String userId) throws Exception{
         try {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
             return  ResponseEntity.ok().body(vehicles);
@@ -42,11 +42,11 @@ public class VehicleController {
     }
 
     @GetMapping("/{id}")
-    public  ResponseEntity<Vehicle> listVehicleById(@PathVariable String id) throws EmptyResultDataAccessException {
+    public  ResponseEntity<Vehicle> listVehicleById(@PathVariable String id) throws Exception {
         try {
             Vehicle vehicle = this.service.listVehicleById(id);
             return ResponseEntity.ok().body(vehicle);
-        }catch (EmptyResultDataAccessException e){
+        }catch (Exception e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

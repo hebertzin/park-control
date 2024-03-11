@@ -9,6 +9,7 @@ public record UsersDTO(
         @NotBlank(message = "name can not be empty")
         @Email(message = "must be a valid email")
         String email,
+        @NotBlank(message = "password can not be empty")
         @Pattern(regexp = "^.{6,}$", message = "at least 6 characters")
         String password)
 {}

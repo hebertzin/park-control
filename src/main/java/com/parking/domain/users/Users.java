@@ -19,8 +19,11 @@ import java.util.List;
 public class Users {
     @Id
     private  String id;
+
     private String name;
+
     private String email;
+
     private String password;
 
     @JsonProperty("spaces")

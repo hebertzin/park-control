@@ -6,11 +6,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UsersControllers {
     private UsersService service;
 
@@ -19,8 +20,8 @@ public class UsersControllers {
         this.service = service;
     }
 
-    @PostMapping()
-    public ResponseEntity<Users> createUser(@Valid  @RequestBody UsersDTO usersDTO){
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Users> createUser(@Valid @RequestBody UsersDTO usersDTO) throws Exception{
         try {
             Users newUser = this.service.CreateUser(usersDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(newUser);
@@ -38,6 +39,5 @@ public class UsersControllers {
         }catch (EmptyResultDataAccessException e){
             return  ResponseEntity.notFound().build();
         }
-
     }
 }
