@@ -27,17 +27,17 @@ public class SpacesController{
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Spaces> createSpaceController(@Valid @RequestBody SpacesDTO spaceDTO) throws Exception{
-            Spaces space = this.service.Create(spaceDTO);
-            return  ResponseEntity.status(HttpStatus.CREATED).body(space);
+             Spaces space = this.service.Create(spaceDTO);
+             return  ResponseEntity.status(HttpStatus.CREATED).body(space);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> updateSpace(@PathVariable String id, @Valid @RequestBody SpacesDTO spaceDTO) {
         try {
-            Spaces spaces = this.service.updateSpace(id, spaceDTO);
-            return ResponseEntity.ok().body(spaces);
+             Spaces spaces = this.service.updateSpace(id, spaceDTO);
+             return ResponseEntity.ok().body(spaces);
         } catch (SpaceException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
