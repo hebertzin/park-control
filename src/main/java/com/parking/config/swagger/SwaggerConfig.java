@@ -23,9 +23,8 @@ public class SwaggerConfig {
         Info info = new Info()
                 .title("Api anúncio de vagas de estacionamento")
                 .version("1.0")
-                .description("Microservice that manage users account.")
+                .description("Sistema onde é possivel adicionar anúncios de espaços, e cadastrar veiculos.")
                 .contact(contact);
-
 
         return new OpenAPI()
                 .info(info);
