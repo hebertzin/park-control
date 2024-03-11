@@ -14,7 +14,7 @@ public interface IVehicleController {
 
    @Operation(summary = "Adiciona um veiculo no sistema")
    @ApiResponses(value = {
-           @ApiResponse(responseCode = "201", description = "Veiculo adicionado com seucesso"),
+           @ApiResponse(responseCode = "201", description = "Veiculo adicionado com sucesso"),
            @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
            @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
    })
@@ -22,7 +22,7 @@ public interface IVehicleController {
 
    @Operation(summary = "Pega dados de um veiculo no sistema")
    @ApiResponses(value = {
-           @ApiResponse(responseCode = "200", description = "Consulta com seucesso"),
+           @ApiResponse(responseCode = "200", description = "Consulta com sucesso"),
            @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
            @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
    })
@@ -30,7 +30,7 @@ public interface IVehicleController {
 
    @Operation(summary = "APaga veiculo do sistema")
    @ApiResponses(value = {
-           @ApiResponse(responseCode = "200", description = "deletado com seucesso"),
+           @ApiResponse(responseCode = "200", description = "deletado com sucesso"),
            @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
            @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
    })

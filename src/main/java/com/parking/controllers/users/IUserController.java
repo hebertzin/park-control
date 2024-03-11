@@ -13,7 +13,7 @@ public interface IUserController {
 
     @Operation(summary = "Cadastra um usuário no sistema")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Usuário criado com seucesso"),
+            @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
     })
@@ -21,7 +21,7 @@ public interface IUserController {
 
     @Operation(summary = "Pega dados de um usuário no sistema")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Consulta com seucesso"),
+            @ApiResponse(responseCode = "201", description = "Consulta com sucesso"),
             @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
     })
