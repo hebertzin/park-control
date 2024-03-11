@@ -4,6 +4,7 @@ import com.parking.domain.spaces.SpacesDTO;
 import com.parking.services.spaces.SpaceService;
 import com.parking.services.spaces.exception.SpaceException;
 import com.parking.services.users.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class SpacesController {
     }
 
     @PostMapping()
-    public ResponseEntity<Spaces> createSpaceController(@RequestBody SpacesDTO spaceDTO){
+    public ResponseEntity<Spaces> createSpaceController(@Valid @RequestBody SpacesDTO spaceDTO){
             Spaces space = this.service.Create(spaceDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(space);
     }
@@ -55,6 +56,16 @@ public class SpacesController {
             List<Spaces> spaces = service.getAllSpaceByUser(id);
             return ResponseEntity.status(HttpStatus.CREATED).body(spaces);
         } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Spaces> updateSpace(@PathVariable String id, @RequestBody SpacesDTO spaceDTO) {
+        try {
+            Spaces spaces = this.service.updateSpace(id, spaceDTO);
+            return ResponseEntity.ok().body(spaces);
+        } catch (SpaceException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

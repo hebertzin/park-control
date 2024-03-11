@@ -1,6 +1,7 @@
 package com.parking.repository.spaces;
 
 import com.parking.domain.spaces.Spaces;
+import com.parking.domain.spaces.SpacesDTO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

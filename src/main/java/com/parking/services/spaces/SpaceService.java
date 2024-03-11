@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.management.Query;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +39,15 @@ public class SpaceService {
     public void deleteSpace(String id) throws  SpaceException {
         this.repository.findById(id).orElseThrow(() ->new SpaceException());
         this.repository.deleteById(id);
+    }
+
+    public Spaces updateSpace(String id, SpacesDTO spacesDTO){
+        Spaces existingSpace = this.repository.findById(id)
+                .orElseThrow(() -> new SpaceException());
+
+        existingSpace.setTitle(spacesDTO.title());
+        existingSpace.setDescription(spacesDTO.description());
+
+        return  this.repository.save(existingSpace);
     }
 }
