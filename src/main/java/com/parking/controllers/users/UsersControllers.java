@@ -31,7 +31,7 @@ public class UsersControllers {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> findById(@PathVariable String id) throws EmptyResultDataAccessException{
         try {
             Users users = this.service.getUser(id);

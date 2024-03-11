@@ -41,7 +41,7 @@ public class SpacesController{
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteSpaceController(@PathVariable String id) throws  EmptyResultDataAccessException{
         try {
             this.service.deleteSpace(id);
@@ -51,7 +51,7 @@ public class SpacesController{
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id) throws SpaceException {
         try {
             Spaces space = this.service.getSpace(id);
@@ -61,7 +61,7 @@ public class SpacesController{
         }
     }
 
-    @GetMapping("/all/{id}")
+    @GetMapping(value = "/all/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) {
         try {
             List<Spaces> spaces = service.getAllSpaceByUser(id);

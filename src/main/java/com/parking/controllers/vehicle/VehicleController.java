@@ -31,7 +31,7 @@ public class VehicleController {
         }
     }
 
-    @GetMapping("/all/{userId}")
+    @GetMapping( value = "/all/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Vehicle>> addVehicle(@PathVariable String userId) throws Exception{
         try {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
@@ -41,7 +41,7 @@ public class VehicleController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Vehicle> listVehicleById(@PathVariable String id) throws Exception {
         try {
             Vehicle vehicle = this.service.listVehicleById(id);
