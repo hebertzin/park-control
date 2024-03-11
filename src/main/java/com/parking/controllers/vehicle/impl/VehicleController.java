@@ -1,4 +1,5 @@
-package com.parking.controllers.vehicle;
+package com.parking.controllers.vehicle.impl;
+import com.parking.controllers.vehicle.IVehicleController;
 import com.parking.domain.vehicle.Vehicle;
 import com.parking.domain.vehicle.VehicleDTO;
 import com.parking.services.vehicle.VehicleService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/vehicles")
-public class VehicleController {
+public class VehicleController implements IVehicleController {
     private VehicleService service;
 
     @Autowired
@@ -32,7 +33,7 @@ public class VehicleController {
     }
 
     @GetMapping( value = "/all/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Vehicle>> addVehicle(@PathVariable String userId) throws Exception{
+    public ResponseEntity<List<Vehicle>> getAllVehiclesByUserId(@PathVariable String userId) throws Exception{
         try {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
             return  ResponseEntity.ok().body(vehicles);

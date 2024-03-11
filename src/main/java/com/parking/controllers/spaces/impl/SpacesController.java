@@ -1,12 +1,11 @@
-package com.parking.controllers.spaces;
+package com.parking.controllers.spaces.impl;
+import com.parking.controllers.spaces.ISpaceController;
 import com.parking.domain.spaces.Spaces;
 import com.parking.domain.spaces.SpacesDTO;
 import com.parking.services.spaces.SpaceService;
-import com.parking.services.spaces.exception.SpaceException;
-import com.parking.services.users.UsersService;
+import com.parking.services.spaces.exception.SpaceNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,8 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1/spaces")
-public class SpacesController{
+@RequestMapping("/api/v1/ads/spaces")
+public class SpacesController implements ISpaceController {
     private SpaceService service;
 
     @Autowired
@@ -36,7 +35,7 @@ public class SpacesController{
         try {
              Spaces spaces = this.service.updateSpace(id, spaceDTO);
              return ResponseEntity.ok().body(spaces);
-        } catch (SpaceException e) {
+        } catch (Exception e) {
              return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
@@ -46,28 +45,28 @@ public class SpacesController{
         try {
             this.service.deleteSpace(id);
             return ResponseEntity.ok().build();
-        }catch (EmptyResultDataAccessException e){
+        }catch (SpaceNotFoundException e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id) throws SpaceException {
+    public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id) throws Exception{
         try {
             Spaces space = this.service.getSpace(id);
             return ResponseEntity.ok().body(space);
-        }catch (SpaceException e){
+        }catch (SpaceNotFoundException e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @GetMapping(value = "/all/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) {
+    public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) throws Exception{
         try {
-            List<Spaces> spaces = service.getAllSpaceByUser(id);
+            List<Spaces> spaces = this.service.getAllSpaceByUser(id);
             return ResponseEntity.status(HttpStatus.CREATED).body(spaces);
-        } catch (EmptyResultDataAccessException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }catch (Exception e){
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 

@@ -1,4 +1,5 @@
-package com.parking.controllers.users;
+package com.parking.controllers.users.impl;
+import com.parking.controllers.users.IUserController;
 import com.parking.domain.users.Users;
 import com.parking.domain.users.UsersDTO;
 import com.parking.services.users.UsersService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UsersControllers {
+public class UsersControllers implements IUserController {
     private UsersService service;
 
     @Autowired
