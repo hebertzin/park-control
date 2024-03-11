@@ -6,8 +6,6 @@ import com.parking.services.spaces.exception.SpaceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
-import javax.management.Query;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,23 +25,39 @@ public class SpaceService {
     }
 
     public Spaces getSpace(String id) throws SpaceException {
+        if(id == null || id.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+
         Optional<Spaces> optionalSpace = this.repository.findById(id);
-        return optionalSpace.orElseThrow(() -> new SpaceException());
+
+       return  optionalSpace.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
     public List<Spaces> getAllSpaceByUser(String id) throws EmptyResultDataAccessException {
-        List<Spaces> listSapesByUser = this.repository.findAllByUser(id);
-        return listSapesByUser;
+
+        this.repository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+        List<Spaces> allSpaces = this.repository.findAllByUser(id);
+
+        return  allSpaces;
     }
 
-    public void deleteSpace(String id) throws  SpaceException {
-        this.repository.findById(id).orElseThrow(() ->new SpaceException());
+    public void deleteSpace(String id) throws Exception {
+        if(id == null || id.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+
+        this.repository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
         this.repository.deleteById(id);
     }
 
     public Spaces updateSpace(String id, SpacesDTO spacesDTO){
+        if(id == null || id.isEmpty()){
+           throw new IllegalArgumentException();
+        }
         Spaces existingSpace = this.repository.findById(id)
-                .orElseThrow(() -> new SpaceException());
+                .orElseThrow(() -> new EmptyResultDataAccessException(1));
 
         existingSpace.setTitle(spacesDTO.title());
         existingSpace.setDescription(spacesDTO.description());

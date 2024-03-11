@@ -23,6 +23,11 @@ public class UsersService {
   };
 
   public Users getUser(String id){
+
+      if(id == null || id.isEmpty()){
+          throw new IllegalArgumentException();
+      }
+
       Optional<Users> optionalUsers = this.repository.findById(id);
       return  optionalUsers.orElseThrow(() -> new EmptyResultDataAccessException(1));
   }

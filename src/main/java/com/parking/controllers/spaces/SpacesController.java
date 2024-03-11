@@ -32,7 +32,7 @@ public class SpacesController{
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Spaces> updateSpace(@PathVariable String id, @RequestBody SpacesDTO spaceDTO) {
+    public ResponseEntity<Spaces> updateSpace(@PathVariable String id, @Valid @RequestBody SpacesDTO spaceDTO) {
         try {
             Spaces spaces = this.service.updateSpace(id, spaceDTO);
             return ResponseEntity.ok().body(spaces);
@@ -42,7 +42,7 @@ public class SpacesController{
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity deleteSpaceController(@PathVariable String id) throws  EmptyResultDataAccessException{
+    public ResponseEntity deleteSpaceController(@PathVariable String id) throws Exception{
         try {
             this.service.deleteSpace(id);
             return ResponseEntity.ok().build();
