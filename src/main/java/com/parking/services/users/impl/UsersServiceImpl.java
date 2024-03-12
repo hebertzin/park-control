@@ -5,6 +5,7 @@ import com.parking.repository.users.UsersRepository;
 import com.parking.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -18,7 +19,11 @@ public class UsersServiceImpl implements IUserService {
   }
 
   public Users CreateUser(UsersDTO user){
+
+      String encrypter = new BCryptPasswordEncoder().encode(user.password());
+
       Users newUser = new Users(user);
+
       return  this.repository.save(newUser);
   };
 
