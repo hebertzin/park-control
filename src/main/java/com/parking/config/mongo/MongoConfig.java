@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MongoConfig {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
+
     @Bean
   public MongoDatabaseFactory configDatabase(){
    return new SimpleMongoClientDatabaseFactory(mongoUri);
