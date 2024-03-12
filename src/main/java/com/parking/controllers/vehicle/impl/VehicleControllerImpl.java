@@ -37,7 +37,7 @@ public class VehicleControllerImpl implements IVehicleController {
         try {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
             return  ResponseEntity.ok().body(vehicles);
-        }catch (Error e){
+        }catch (Exception e){
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }

@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 
 public interface IUserController {
@@ -25,6 +24,6 @@ public interface IUserController {
             @ApiResponse(responseCode = "400", description = "Se houve algum erro", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor", content = @Content)
     })
-    ResponseEntity<Users> findById(String id) throws EmptyResultDataAccessException;
+    ResponseEntity<Users> findById(String id) throws Exception;
 
 }

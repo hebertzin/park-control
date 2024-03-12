@@ -6,5 +6,5 @@ import com.parking.domain.users.UsersDTO;
 public interface IUserService {
     Users CreateUser(UsersDTO user);
 
-    Users getUser(String id);
+    Users getUser(String id) throws UserNotFoundException;
 }

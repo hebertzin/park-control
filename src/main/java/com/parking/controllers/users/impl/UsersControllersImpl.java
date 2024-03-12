@@ -5,7 +5,6 @@ import com.parking.domain.users.UsersDTO;
 import com.parking.services.users.impl.UsersServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,23 +21,14 @@ public class UsersControllersImpl implements IUserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Users> createUser(@Valid @RequestBody UsersDTO usersDTO) throws Exception{
-        try {
+    public ResponseEntity<Users> createUser(@Valid @RequestBody UsersDTO usersDTO){
             Users newUser = this.service.CreateUser(usersDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-        }catch (Error e){
-            return  ResponseEntity.notFound().build();
-        }
-
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Users> findById(@PathVariable String id) throws EmptyResultDataAccessException{
-        try {
-            Users users = this.service.getUser(id);
-            return  ResponseEntity.ok().body(users);
-        }catch (EmptyResultDataAccessException e){
-            return  ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Users> findById(@PathVariable String id) throws Exception{
+            Users user = this.service.getUser(id);
+            return  ResponseEntity.ok().body(user);
     }
 }

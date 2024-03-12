@@ -4,7 +4,6 @@ import com.parking.domain.spaces.SpacesDTO;
 import com.parking.repository.spaces.SpacesRepository;
 import com.parking.repository.users.UsersRepository;
 import com.parking.services.spaces.ISpaceService;
-import com.parking.services.spaces.exception.SpaceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -31,23 +30,23 @@ public class SpaceServiceImpl implements ISpaceService {
         return this.repository.save(newSpace);
     }
 
-    public Spaces getSpaceAds(String id) throws SpaceNotFoundException {
+    public Spaces getSpaceAds(String id){
         if(id == null || id.isEmpty()){
             throw new IllegalArgumentException();
         }
 
         Optional<Spaces> optionalSpace = this.repository.findById(id);
 
-       return  optionalSpace.orElseThrow(() -> new SpaceNotFoundException("space not found"));
+       return  optionalSpace.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
-    public List<Spaces> getAllAdsSpaceByUser(String id) throws EmptyResultDataAccessException {
+    public List<Spaces> getAllAdsSpaceByUser(String id){
         this.usersRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
 
         return  this.repository.findAllByUser(id);
     }
 
-    public void deleteSpaceAds(String id) throws Exception {
+    public void deleteSpaceAds(String id){
         if(id == null || id.isEmpty()){
             throw new IllegalArgumentException();
         }

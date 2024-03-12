@@ -20,7 +20,7 @@ public class VehicleServiceImpl implements IVehicleService {
         this.repository = repository;
     }
 
-    public Vehicle Create(VehicleDTO vehicleDTO){
+    public Vehicle Create(VehicleDTO vehicleDTO) throws Exception{
         Vehicle vehicle = new Vehicle(vehicleDTO);
         return this.repository.save(vehicle);
     }

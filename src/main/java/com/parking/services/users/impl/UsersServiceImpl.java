@@ -4,7 +4,6 @@ import com.parking.domain.users.UsersDTO;
 import com.parking.repository.users.UsersRepository;
 import com.parking.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -22,13 +21,13 @@ public class UsersServiceImpl implements IUserService {
       return  this.repository.save(newUser);
   };
 
-  public Users getUser(String id){
+  public Users getUser(String id) throws UserNotFoundException {
 
       if(id == null || id.isEmpty()){
           throw new IllegalArgumentException();
       }
 
       Optional<Users> optionalUsers = this.repository.findById(id);
-      return  optionalUsers.orElseThrow(() -> new EmptyResultDataAccessException(1));
+      return  optionalUsers.orElseThrow(UserNotFoundException::new);
   }
 }
