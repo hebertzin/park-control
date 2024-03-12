@@ -25,14 +25,14 @@ public class SpacesControllerImpl implements ISpaceController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> createSpaceController(@Valid @RequestBody SpacesDTO spaceDTO) throws Exception{
-             Spaces space = this.service.Create(spaceDTO);
+             Spaces space = this.service.createAdsSpace(spaceDTO);
              return  ResponseEntity.status(HttpStatus.CREATED).body(space);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> updateSpace(@PathVariable String id, @Valid @RequestBody SpacesDTO spaceDTO) {
         try {
-             Spaces spaces = this.service.updateSpace(id, spaceDTO);
+             Spaces spaces = this.service.updateSpaceAds(id, spaceDTO);
              return ResponseEntity.ok().body(spaces);
         } catch (Exception e) {
              return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -42,7 +42,7 @@ public class SpacesControllerImpl implements ISpaceController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteSpaceController(@PathVariable String id) throws Exception{
         try {
-            this.service.deleteSpace(id);
+            this.service.deleteSpaceAds(id);
             return ResponseEntity.ok().build();
         }catch (SpaceNotFoundException e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -52,7 +52,7 @@ public class SpacesControllerImpl implements ISpaceController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Spaces> getSpaceByIdController(@PathVariable String id) throws Exception{
         try {
-            Spaces space = this.service.getSpace(id);
+            Spaces space = this.service.getSpaceAds(id);
             return ResponseEntity.ok().body(space);
         }catch (SpaceNotFoundException e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -62,7 +62,7 @@ public class SpacesControllerImpl implements ISpaceController {
     @GetMapping(value = "/all/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Spaces>> getAllSpacesByUser(@PathVariable String id) throws Exception{
         try {
-            List<Spaces> spaces = this.service.getAllSpaceByUser(id);
+            List<Spaces> spaces = this.service.getAllAdsSpaceByUser(id);
             return ResponseEntity.status(HttpStatus.CREATED).body(spaces);
         }catch (Exception e){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();

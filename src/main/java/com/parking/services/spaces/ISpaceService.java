@@ -8,13 +8,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import java.util.List;
 
 public interface ISpaceService {
-    Spaces Create(SpacesDTO space);
+    Spaces createAdsSpace(SpacesDTO space);
 
-    Spaces getSpace(String id) throws SpaceNotFoundException;
+    Spaces getSpaceAds(String id) throws SpaceNotFoundException;
 
-    List<Spaces> getAllSpaceByUser(String userId) throws EmptyResultDataAccessException;
+    List<Spaces> getAllAdsSpaceByUser(String userId) throws EmptyResultDataAccessException;
 
-    void deleteSpace(String id) throws Exception;
+    void deleteSpaceAds(String id) throws Exception;
 
-    Spaces updateSpace(String id, SpacesDTO space);
+    Spaces updateSpaceAds(String id, SpacesDTO space);
 }

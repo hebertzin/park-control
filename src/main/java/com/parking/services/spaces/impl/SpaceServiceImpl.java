@@ -26,12 +26,12 @@ public class SpaceServiceImpl implements ISpaceService {
         this.usersRepository = userRepository;
     }
 
-    public Spaces Create(SpacesDTO space){
+    public Spaces createAdsSpace(SpacesDTO space){
         Spaces newSpace = new Spaces(space);
         return this.repository.save(newSpace);
     }
 
-    public Spaces getSpace(String id) throws SpaceNotFoundException {
+    public Spaces getSpaceAds(String id) throws SpaceNotFoundException {
         if(id == null || id.isEmpty()){
             throw new IllegalArgumentException();
         }
@@ -41,13 +41,13 @@ public class SpaceServiceImpl implements ISpaceService {
        return  optionalSpace.orElseThrow(() -> new SpaceNotFoundException("space not found"));
     }
 
-    public List<Spaces> getAllSpaceByUser(String id) throws EmptyResultDataAccessException {
+    public List<Spaces> getAllAdsSpaceByUser(String id) throws EmptyResultDataAccessException {
         this.usersRepository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
 
         return  this.repository.findAllByUser(id);
     }
 
-    public void deleteSpace(String id) throws Exception {
+    public void deleteSpaceAds(String id) throws Exception {
         if(id == null || id.isEmpty()){
             throw new IllegalArgumentException();
         }
@@ -56,7 +56,7 @@ public class SpaceServiceImpl implements ISpaceService {
         this.repository.deleteById(id);
     }
 
-    public Spaces updateSpace(String id, SpacesDTO spacesDTO){
+    public Spaces updateSpaceAds(String id, SpacesDTO spacesDTO){
         if(id == null || id.isEmpty()){
            throw new IllegalArgumentException();
         }
