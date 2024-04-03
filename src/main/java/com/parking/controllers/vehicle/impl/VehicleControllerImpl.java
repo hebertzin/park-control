@@ -24,32 +24,20 @@ public class VehicleControllerImpl implements IVehicleController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vehicle> addVehicle(@Valid  @RequestBody VehicleDTO vehicleDTO) throws Exception{
-        try {
             Vehicle vehicle = this.service.Create(vehicleDTO);
             return  ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
-        }catch (Error e){
-           return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
     }
 
     @GetMapping( value = "/all/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Vehicle>> getAllVehiclesByUserId(@PathVariable String userId) throws Exception{
-        try {
             List<Vehicle> vehicles = this.service.findAllVehicles(userId);
             return  ResponseEntity.ok().body(vehicles);
-        }catch (Exception e){
-            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Vehicle> listVehicleById(@PathVariable String id) throws Exception {
-        try {
             Vehicle vehicle = this.service.listVehicleById(id);
             return ResponseEntity.ok().body(vehicle);
-        }catch (Exception e){
-            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
     }
 }
 

@@ -1,7 +1,8 @@
 package com.parking.controllers.authentication;
 
 import com.parking.domain.auth.LoginRequest;
+import org.springframework.http.ResponseEntity;
 
 public interface IAuthenticationController {
-    void  authenticate(LoginRequest request);
+    ResponseEntity authenticate(LoginRequest request);
 }
