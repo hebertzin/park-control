@@ -1,12 +1,7 @@
-# Parking API
+# park-control
 
-<div style="display: flex;">
-    <img src="https://camo.githubusercontent.com/b0648ef7a9b6980ea27c1caaeb06d5c8503dbb4f9b4d9d7ca1df60a5edc14340/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a6176612d2532334544384230302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6f70656e6a646b266c6f676f436f6c6f723d7768697465" alt="Texto alternativo">
-  <img src="https://camo.githubusercontent.com/c2a58428fe9b38967494da3b0a098f1d28f9cc395e3bbf123cbc14fb36bc1b07/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f737072696e672d2532333644423333462e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d737072696e67266c6f676f436f6c6f723d7768697465" alt="Texto alternativo">
-    <img src="https://camo.githubusercontent.com/7e95531437f8c91626ae46cb69240160dfde5c39c1119c550cd174ba8a19e712/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4d6f6e676f44422d2532333465613934622e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d6d6f6e676f6462266c6f676f436f6c6f723d7768697465" alt="Texto alternativo">
-        <img src="https://camo.githubusercontent.com/aac74ca85b21ed1ff4fa88dda8712fce9cddbf786bdf807231e6179f70003ac5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a57542d626c61636b3f7374796c653d666f722d7468652d6261646765266c6f676f3d4a534f4e253230776562253230746f6b656e73" alt="Texto alternativo">
-</div>
+This project is a RESTful API built with Java, Spring Boot, and MongoDB as the database. It also integrates Spring Security and JWT (JSON Web Tokens) for authentication and authorization.
 
-Este projeto é uma API construída usando **Java**, **Spring Boot**, **MongoDB** como banco de dados ,**Spring Security** e **JWT** para controle de autenticação.
-A API foi desenvolvida para meu Melhorar as minhas habilidades no **Desenvolvimento Backend** utilizando Java.
+The main goal of this project is to enhance my backend development skills using Java and to gain hands-on experience in building secure and scalable APIs.
 
+I plan to refactor and improve the system over time, while continuing to study and deepen my knowledge of Java and backend development best practices.
